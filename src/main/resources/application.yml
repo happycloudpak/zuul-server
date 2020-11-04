@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:80}
+
+spring:
+  application:
+    name: zuul-server
+    
+zuul:
+  host: 
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  routes:
+    appl1:
+      path: /appl1/**
+      url: http://localhost:8001
+    appl2:
+      path: /appl2/**
+      url: http://localhost:8002
+    appl3:
+      path: /appl3/**
+      url: http://localhost:8003
+     
