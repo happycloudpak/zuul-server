@@ -59,5 +59,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ SERVICE_NAME }}
-          servicePort: {{ SERVICE_PORT }}
+          service: 
+            name: {{ SERVICE_NAME }} 
+            port: 
+              number: {{ SERVICE_PORT }}
