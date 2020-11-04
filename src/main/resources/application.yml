@@ -12,7 +12,7 @@ zuul:
   routes:
     appl1:
       path: /appl1/**
-      url: http://localhost:8001
+      url: http://backend-service.169.56.86.251.nip.io
     appl2:
       path: /appl2/**
       url: http://localhost:8002
