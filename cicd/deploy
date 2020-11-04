@@ -3,9 +3,22 @@
 echo "************* DEPLOY service *****************"
 
 # get parameters
+if ([ $# < 2 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); then
+  echo "deploy <k8s-context> <root directory>"
+  echo " k8s-context: 사용할 k8s context명. kubectl config view로 context 목록 확인. '.'은 현재 컨텍스트 의미함 "
+  echo " root directory: project의 최상위 디렉토리. '.'은 현재 디렉토리 의미함. "
+  echo " ex) ./deploy kubernetes-admin@kubernetes ~/work"
+  echo " ex) ./deploy . ."
+  exit 2
+fi
+
 context=$1
 basedir=$2
 
+if [ "${context}" == "." ]; then
+	context=`kubectl config current-context`
+fi
+ 
 # set variables from config.properties
 while read line
 do
@@ -19,12 +32,7 @@ do
 done < ${basedir}/cicd/config.properties
 
 # switch kubenetes context
-if [ $# == 0 ]; then
-  echo "CAN'T GET TARGET CONTEXT NAME"
-  exit 2
-else
-  kubectl config use-context ${context}
-fi
+kubectl config use-context ${context}
 
 # check current version
 CURTAG=$(kubectl get deploy ${image_repository} -o yaml | grep "image: ${image_registry}/${image_project}/${image_repository}:" | cut -d ':' -f3)
