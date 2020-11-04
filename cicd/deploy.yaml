@@ -20,7 +20,7 @@ spec:
         image: {{ IMAGE_NAME }}
         imagePullPolicy: Always
         env:
-        - name: PORT
+        - name: SERVER_PORT
           value: {{ SERVICE_TARGET_PORT_ENV }}
         ports:
         - name: port1
