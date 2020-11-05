@@ -14,6 +14,7 @@ zuul:
       path: /appl1/**
       #url: http://backend-service.169.56.86.251.nip.io
       url: http://backend-service:8001
+     
     appl2:
       path: /appl2/**
       url: http://localhost:8002

@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: SERVER_PORT
-          value: {{ SERVICE_TARGET_PORT_ENV }}
+          value: "{{ SERVICE_TARGET_PORT }}"
         ports:
         - name: port1
           containerPort: 18180
