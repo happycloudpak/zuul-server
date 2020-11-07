@@ -7,6 +7,6 @@ zuul:
     socket-timeout-millis: 30000
   routes:
     appl1:
-      path: /appl1/**
+      path: /svcmesh/**
       url: http://localhost:8001
   

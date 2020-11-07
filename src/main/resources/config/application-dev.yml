@@ -7,5 +7,5 @@ zuul:
     socket-timeout-millis: 30000
   routes:
     appl1:
-      path: /appl1/**
+      path: /svcmesh/**
       url: http://backend-service:8001  
