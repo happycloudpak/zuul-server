@@ -8,4 +8,4 @@ zuul:
   routes:
     appl1:
       path: /appl1/**
-      url: http://backend-service:8001
+      url: http://backend-service:18001

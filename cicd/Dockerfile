@@ -15,4 +15,4 @@ COPY ./target/${ARTIFACTORY_FILE} ${ARTIFACTORY_HOME}
 # Launch the artifactory as docker user
 ENTRYPOINT [ "sh", "-c" ]
 USER docker
-CMD [ "exec java -jar ${ARTIFACTORY_FILE}" ]
+CMD [ "java -jar ${ARTIFACTORY_FILE} --spring.profiles.active=${PROFILE}" ]

@@ -25,6 +25,8 @@ spec:
         env:
         - name: SERVER_PORT
           value: "{{ SERVICE_TARGET_PORT }}" 
+        - name: PROFILE
+          value: {{ PROFILE }}
         envFrom:
         - configMapRef:
             name: "{{ SERVICE_NAME }}-cm-common"        

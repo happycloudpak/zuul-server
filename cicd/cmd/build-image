@@ -27,7 +27,7 @@ echo ""
 # build image
 echo "STEP3. Build image "
 echo "image: ${image_registry}/${image_project}/${image_repository}:${image_tag}"
-docker build --build-arg ARTIFACTORY_FILE=${image_repository} -f ${basedir}/cicd/Dockerfile -t ${image_registry}/${image_project}/${image_repository}:${image_tag} ${basedir}
+docker build --build-arg ARTIFACTORY_FILE=${image_repository}.jar -f ${basedir}/cicd/Dockerfile -t ${image_registry}/${image_project}/${image_repository}:${image_tag} ${basedir}
 echo ""
 
 # login image registry to push image: parameters are provided from bamboo pipeline.
