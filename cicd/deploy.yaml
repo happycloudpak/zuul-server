@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ SERVICE_NAME }}
+  namespace: {{ NAMESPACE }}
   labels:
     app: {{ SERVICE_NAME }}
 spec:
@@ -16,6 +17,7 @@ spec:
       labels:
         app: {{ SERVICE_NAME }}
     spec:
+      serviceAccountName: {{ SERVICEACCOUNT }}
       containers:
       - name: {{ SERVICE_NAME }}
         image: {{ IMAGE_NAME }}
@@ -47,6 +49,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ SERVICE_NAME }}
+  namespace: {{ NAMESPACE }}  
 spec:
   type: ClusterIP
   selector:
@@ -62,6 +65,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   name: {{ SERVICE_NAME }}
+  namespace: {{ NAMESPACE }}  
 spec:
   rules:
   - host: {{ SERVICE_HOST }}

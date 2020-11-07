@@ -93,7 +93,7 @@ echo ""
 # check current version
 echo "STEP4. Delete application if same version exists "
 
-CURTAG=$(kubectl get ${deploy_kind} ${image_repository} -o yaml | grep "image: ${image_registry}/${image_project}/${image_repository}:" | cut -d ':' -f3)
+CURTAG=$(kubectl get ${deploy_kind} ${image_repository} -o yaml 2> /dev/null | grep "image: ${image_registry}/${image_project}/${image_repository}:" | cut -d ':' -f3)
 echo "FIND CURRENT VERSION: ${CURTAG}"
 
 # 동일한 서비스의 동일한 버전이 있으면 변경내용 반영위해 기존 deployment 삭제
@@ -139,6 +139,8 @@ echo "STEP7. Deploy application "
 
 IMG="${image_registry}\/${image_project}\/${image_repository}:${image_tag}"
 sed "s@{{ SERVICE_NAME }}@${image_repository}@g" ${basedir}/cicd/deploy.yaml | \
+sed "s@{{ NAMESPACE }}@${namespace}@g" - | \
+sed "s@{{ SERVICEACCOUNT }}@${serviceaccount}@g" - | \
 sed "s@{{ IMAGE_NAME }}@${IMG}@g" - | \
 sed "s@{{ SERVICE_TARGET_PORT }}@${service_target_port}@g" - | \
 sed "s@{{ SERVICE_PORT }}@${service_port}@g" - | \
