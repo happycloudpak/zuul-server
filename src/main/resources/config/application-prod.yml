@@ -1,0 +1,11 @@
+server:
+  port: 80
+
+zuul:
+  host: 
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  routes:
+    appl1:
+      path: /appl1/**
+      url: http://backend-service:8001
